@@ -67,13 +67,9 @@ When expressions are referentially transparent, we can use the substitution mode
 
 Why does FP impose the constraint of using pure functions?
 -----------------------------------------------------------
-* FP relies on function composition, rather than state mutation, to compute the values in our program. Hence, in FP, functions should be reusable and composable. Side effects or external interference make functions less reusable.
+* FP relies on function composition, rather than state mutation, to compute the values in our program. Hence, in FP, functions should be reusable and composable. Side effects or external interference make functions less reusable. Eliminating side effects results in more reusable functions, which can be composed in more flexible ways.
 
-Also, eliminating side effects when possible results in more modular functions, which can be composed in more flexible ways.
-
-* side effects make it harder to reason about the correctness of a program
-
-Example:
+* Side effects make it harder to reason about the correctness of a program. For example:
 Your program is in the middle of modifying a data structure in place when it throws an exception. It's hard to write code to catch the exception, undo the partial changes already made to the data structure, and rethrow the exception. If the exception handler doesn't revert the changes to the partially-modified data structure, the program will continue executing with corrupt data, making it harder to debug.
 
 In FP, we aim to identify side effects and limit them.
