@@ -1,8 +1,3 @@
-intro to FP and higher-order functions
-ch 1, 2
-
-
-
 Why Functional Programming?
 ===========================
 
