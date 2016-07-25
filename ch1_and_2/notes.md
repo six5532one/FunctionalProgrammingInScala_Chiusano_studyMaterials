@@ -191,8 +191,8 @@ Invoking `findFirst` with an anonymous function:
 ```
 
 Syntax for anonymous functions:
-left-hand-side: comma-delimited list of parameter names and types
-right-hand-side: body of function
+- left-hand-side: comma-delimited list of parameter names and types
+- right-hand-side: body of function
 i.e.
 ```
 (x: Int) => x == 9
