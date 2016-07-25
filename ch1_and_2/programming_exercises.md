@@ -38,8 +38,9 @@ Clarification of the method signature of `curry`
 - param: a function `f` that takes 2 params (`a`, `b`) and has a return value of type `C`
 - returns: the curried version of the input function; a function `g` that takes 1 param `a` and returns the function `h`, where `h` takes 1 param `b` and has retval of type `C`, such that `g` has the signature: `g(a: A): (b: B) => C` and `g(a)(b) = f(a,b)`
 
-An annotated console session that demonstrates `curry`:
-
+An annotated console session that demonstrates `curry`
+-------------------------------------------------------
+```
 	Let `sumTo5` be the input `f` to `curry`, where `f` is a 
 	function that takes 2 params
 	scala> def sumTo5(x: Int, y: Int): Boolean = x + y == 5
@@ -86,37 +87,41 @@ An annotated console session that demonstrates `curry`:
 
 	scala> ifAddedTo7ThenSumsTo5(-1)
 	res9: Boolean = false
-
+```
 
 
 4
---
-Implement uncurry, which reverses the transformation of curry. Note that since => associates to the right, A => (B => C) can be written as A => B => C.
+==
+Implement `uncurry`, which reverses the transformation of curry. Note that since => associates to the right, A => (B => C) can be written as A => B => C.
 ```
 def uncurry[A,B,C](f: A => B => C): (A, B) => C
 ```
 
-Clarification of what `uncurry` should accomplish:
-	Given the curried form of a function, `f`, return the original function that requires two arguments.
+Clarification of what `uncurry` should accomplish
+--------------------------------------------------
+Given the curried form of a function, `f`, return the original function that requires two arguments.
 	
-A console session that demonstrates `uncurry`:
+A console session that demonstrates `uncurry`
+---------------------------------------------
+```
 	scala> def sumTo5(x: Int, y: Int): Boolean = x + y == 5
 	sumTo5: (x: Int, y: Int)Boolean
 
 	scala> val sumTo5CurriedThenUncurried = Chapter1And2.uncurry( Chapter1And2.curry(sumTo5) )
 	sumTo5CurriedThenUncurried: (Int, Int) => Boolean = <function2>
-
+```
 
 
 5
---
+==
 Implement the higher-order function that composes two functions.
 ```
 def compose[A,B,C](f: B => C, g: A => B): A => C
 ```
 
-A console session that demonstrates `compose`:
-
+A console session that demonstrates `compose`
+---------------------------------------------
+```
 	scala> def printRes(b: Float): Unit = println(s"$b is a float")
 	printRes: (b: Float)Unit
 
@@ -128,3 +133,4 @@ A console session that demonstrates `compose`:
 
 	scala> Chapter1And2.compose(printRes, asFloat)(5)
 	5.0 is a float
+```
