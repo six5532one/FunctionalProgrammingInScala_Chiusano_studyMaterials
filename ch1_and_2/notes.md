@@ -230,7 +230,7 @@ f(x1)(x2) = h
 
 We can partially apply `h` to `x3`, then partially apply the resulting function to `x4`, and so on until we have a function that only requires param `xn`:
 ```
-f(x1)(x2)(x3)(x4)....(xn) = f(x1, x2, ...., xn)
+f_curried(x1)(x2)(x3)(x4)....(xn) = f(x1, x2, ...., xn)
 ```
 
 Currying `f` allows us to compose its components to form the following functions:
