@@ -217,12 +217,12 @@ Currying is the process of decomposing a function of multiple arguments into a c
 
 Let's walk through the process of currying a function `f(x1, x2, ...., xn)` that requires n arguments.
 
-The result of partial application of `f` to `x1` is `g` (a function that requires params x2, ...., xn):
+The result of partial application of `f` to `x1` is `g` (a function that requires params `x2, ...., xn`):
 ```
 f(x1) = g
 ```
 
-The result of partial application of `g` to `x2` is `h` (a function that requires params x3, ...., xn):
+The result of partial application of `g` to `x2` is `h` (a function that requires params `x3, ...., xn`):
 ```
 g(x2) = h
 f(x1)(x2) = h
