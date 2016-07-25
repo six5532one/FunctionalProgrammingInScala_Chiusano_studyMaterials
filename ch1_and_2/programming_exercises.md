@@ -1,5 +1,4 @@
-7/26/16 Beginner-level Programming Exercises
-(from Chapter 2 of "Functional Programming in Scala")
+These are from Chapter 2 of [Functional Programming in Scala](https://www.manning.com/books/functional-programming-in-scala).
 
 The following example of how to write loops functionally (without mutating a loop variable) will be helpful for exercises 1 and 2.
 	```
@@ -12,13 +11,19 @@ The following example of how to write loops functionally (without mutating a loo
 	```
 
 1. Write a recursive function to get the nth Fibonacci number (http://mng.bz/C29s). The first two Fibonacci numbers are 0 and 1. The nth number is always the sum of the previous two—the sequence begins 0, 1, 1, 2, 3, 5. Your definition should use a local tail-recursive function.
+```
 def fib(n: Int): Int
+```
 
 2. Implement isSorted, which checks whether an Array[A] is sorted according to a given comparison function:
+```
 def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean
+```
 
 3. Currying converts a function f of two arguments into a function of one argument that partially applies f. There’s only one implementation of currying that compiles. Write this implementation.
+```
 def curry[A,B,C](f: (A, B) => C): A => (B => C)
+```
 
 Clarification of the method signature of `curry`:
 	param: a function `f` that takes 2 params (`a, `b`) and has a return value of type `C`
@@ -80,7 +85,9 @@ An annotated console session that demonstrates `curry`:
 
 
 4. Implement uncurry, which reverses the transformation of curry. Note that since => associates to the right, A => (B => C) can be written as A => B => C.
+```
 def uncurry[A,B,C](f: A => B => C): (A, B) => C
+```
 
 Clarification of what `uncurry` should accomplish:
 	Given the curried form of a function, `f`, return the original function that requires two arguments.
@@ -94,7 +101,9 @@ A console session that demonstrates `uncurry`:
 
 
 5. Implement the higher-order function that composes two functions.
+```
 def compose[A,B,C](f: B => C, g: A => B): A => C
+```
 
 A console session that demonstrates `compose`:
 
