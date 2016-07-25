@@ -10,12 +10,16 @@ The following example of how to write loops functionally (without mutating a loo
 	}
 	```
 
-1. Write a recursive function to get the nth Fibonacci number (http://mng.bz/C29s). The first two Fibonacci numbers are 0 and 1. The nth number is always the sum of the previous two—the sequence begins 0, 1, 1, 2, 3, 5. Your definition should use a local tail-recursive function.
+1
+--
+Write a recursive function to get the nth Fibonacci number (http://mng.bz/C29s). The first two Fibonacci numbers are 0 and 1. The nth number is always the sum of the previous two—the sequence begins 0, 1, 1, 2, 3, 5. Your definition should use a local tail-recursive function.
 ```
 def fib(n: Int): Int
 ```
 
-2. Implement isSorted, which checks whether an Array[A] is sorted according to a given comparison function:
+2
+--
+Implement isSorted, which checks whether an Array[A] is sorted according to a given comparison function:
 ```
 def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean
 ```
