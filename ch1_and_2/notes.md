@@ -6,10 +6,8 @@ Problem: Mutable state is bad
 Stateful systems are:
 * harder to reason about because you have to keep track of changes to state
 Example: Your program is in the middle of modifying a data structure in place when it throws an exception. It's hard to write code to catch the exception, undo the partial changes already made to the data structure, and rethrow the exception. If the exception handler doesn't revert the changes to the partially-modified data structure, the program will continue executing with corrupt data.
-
 * harder to test
 * harder to parallelize (need synchronization mechanisms like Mutexes)
-
 
 
 How does FP solve this problem?
@@ -27,29 +25,22 @@ does nothing other than return a result.
 In contrast, a function that does something other than return a result has side effects.
 
 Examples of side effects:
-	* modify a variable (i.e. setting a field on an object)
-
-	* modify a data structure in place
-	i.e.
-	setting the right subtree of a binary tree with this statement modifies it in place:
-	oldTree.right = r
-	whereas this statement returns a tree with the desired properties without modifying `oldTree`:
-	t = new Tree(oldTree.root, oldTree.left, r)
-	
-	* i/o: printing to the console, reading user input, reading from or writing to a file
-
-	* throwing an exception
+* modify a variable (i.e. setting a field on an object)
+* modify a data structure in place (i.e. setting the right subtree of a binary tree with `oldTree.right = r` modifies it in place whereas `t = new Tree(oldTree.root, oldTree.left, r)` returns a tree with the desired properties without modifying `oldTree`)
+* i/o: printing to the console, reading user input, reading from or writing to a file
+* throwing an exception
 
 In summary, these are characteristics of a pure function:
-	* Its result is always the same for the same supplied parameters.
-	* Its result is not dependent on anything that isn’t supplied as a parameter.
-	* It does not alter any of the parameters that were supplied.
-	* It does not alter anything outside its scope.
+* Its result is always the same for the same supplied parameters.
+* Its result is not dependent on anything that isn’t supplied as a parameter.
+* It does not alter any of the parameters that were supplied.
+* It does not alter anything outside its scope.
 
 Mathematical functions are pure functions.
 Example:
+```
 f(x) = mx + b
-
+```
 
 
 Referential Transparency and the Substitution Model
@@ -59,19 +50,16 @@ Referential Transparency and the Substitution Model
 An expression is referentially transparent if, in any program, it can be replaced by its result without changing the meaning of the program.
 
 Is the following function referentially transparent?
-
+```
 def buyCoffee(cc: CreditCard): Coffee = {
 	val cup = new Coffee()
 	cc.charge(cup.price)
 	cup
 }
-
+```
 If the function `buyCoffee` were referentially transparent, we could substitute any call with its result `new Coffee()` and the program would behave the same.
 If we substitute
-f(buyCoffee(aliceCreditCard))
-with
-f(new Coffee())
-for any `f` in the program, the program would not behave the same way because `buyCoffee` charges credit cards in addition to returning a cup of coffee. So `buyCoffee` is not referentially transparent.
+`f(buyCoffee(aliceCreditCard))` with `f(new Coffee())` for any `f` in the program, the program would not behave the same way because `buyCoffee` charges credit cards in addition to returning a cup of coffee. So `buyCoffee` is not referentially transparent.
 
 When expressions are referentially transparent, we can use the substitution model to reason about the program.
 
@@ -83,18 +71,12 @@ Why does FP impose the constraint of using pure functions?
 
 Also, eliminating side effects when possible results in more modular functions, which can be composed in more flexible ways.
 
-
 * side effects make it harder to reason about the correctness of a program
 
 Example:
 Your program is in the middle of modifying a data structure in place when it throws an exception. It's hard to write code to catch the exception, undo the partial changes already made to the data structure, and rethrow the exception. If the exception handler doesn't revert the changes to the partially-modified data structure, the program will continue executing with corrupt data, making it harder to debug.
 
 In FP, we aim to identify side effects and limit them.
-
-
-
-
-
 
 
 
