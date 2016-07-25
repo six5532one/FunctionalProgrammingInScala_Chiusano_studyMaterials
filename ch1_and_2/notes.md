@@ -190,10 +190,10 @@ Invoking `findFirst` with an anonymous function:
 	findFirst(Array(7, 9, 13), (x: Int) => x == 9)
 ```
 
-Syntax for anonymous functions:
+Syntax for anonymous functions (with two examples):
 - left-hand-side: comma-delimited list of parameter names and types
 - right-hand-side: body of function
-i.e.
+
 ```
 (x: Int) => x == 9
 ```
