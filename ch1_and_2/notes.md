@@ -87,7 +87,7 @@ We want to minimize the number of procedures in our programs by defining as many
 
 Higher-order functions
 -----------------------
-Treat functions like other values, i.e.
+Higher-order functions treat functions like other values, i.e.
 - passing them as arguments to other functions
 - returning them as the return value of a function
 - assigning them to a variable
@@ -149,7 +149,7 @@ object MyModule {
 
 Polymorphism: Defining functions that can be applied to arguments of any type
 ------------------------------------------------------------------------------
-`findFirst` returns the lowest array index of an element that matches the `key` argument and -1 if none of the elements in `ss` match `key`.
+`findFirst` returns the lowest array index of an element that matches the `key` argument and -1 if none of the elements in `ss` match `key`:
 ```
 def findFirst(ss: Array[String], key: String): Int = {
 	@annotation.tailrec
