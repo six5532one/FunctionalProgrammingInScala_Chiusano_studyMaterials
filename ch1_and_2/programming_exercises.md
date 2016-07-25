@@ -36,7 +36,7 @@ def curry[A,B,C](f: (A, B) => C): A => (B => C)
 Clarification of the method signature of `curry`
 ------------------------------------------------
 - param: a function `f` that takes 2 params (`a`, `b`) and has a return value of type `C`
-- returns: the curried version of the input function; a function `g` that takes 1 param `a` and returns the function `h` that takes 1 param `b` and has retval of type `C` such that `g` has the signature: `g(a: A): (b: B) => C` and `g(a)(b) = f(a,b)`
+- returns: the curried version of the input function; a function `g` that takes 1 param `a` and returns the function `h`, where `h` takes 1 param `b` and has retval of type `C`, such that `g` has the signature: `g(a: A): (b: B) => C` and `g(a)(b) = f(a,b)`
 
 An annotated console session that demonstrates `curry`:
 
