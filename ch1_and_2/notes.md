@@ -80,9 +80,11 @@ In FP, we aim to identify side effects and limit them.
 
 
 
+
+
 Intro to Functional Programming w Scala
 ========================================
-In the following code, the `main` method of MyModule is an impure function ("procedure") because calling it results in a side effect (printing to console). The methods that `main` invokes are pure functions.
+In the following code, the `main` method of `MyModule` is an impure function ("procedure") because calling it results in a side effect (printing to console). The methods that `main` invokes are pure functions.
 
 We want to minimize the number of procedures in our programs by defining as many functions as possible by combining pure functions. Higher-order functions allow us to define pure functions using function composition.
 
@@ -95,7 +97,7 @@ Treat functions like other values, i.e.
 - assigning them to a variable
 - storing them in data structures
 
-
+```
 object MyModule {
 	def abs(n: Int): Int = {
 	    if (n < 0) -n
@@ -146,12 +148,13 @@ object MyModule {
 	    println(formatResult("factorial", 7, factorial))
 	  }
 }
+```
 
 
 Polymorphism: Defining functions that can be applied to arguments of any type
 ------------------------------------------------------------------------------
 `findFirst` returns the lowest array index of an element that matches the `key` argument and -1 if none of the elements in `ss` match `key`.
-
+```
 def findFirst(ss: Array[String], key: String): Int = {
 	@annotation.tailrec
 	def loop(n: Int): Int =
@@ -160,12 +163,12 @@ def findFirst(ss: Array[String], key: String): Int = {
 		else loop(n + 1)
 	loop(0)
 }
-
+```
 We can redefine `findFirst` to search within arrays of any type by making two changes:
 1) use a type parameter (`A`)
 2) Instead of using the `==` operator to identify the desired element in `as`, use an argument `p`. `p` is a function that takes an argument of type `A` (an element in `as`) and returns a value of Boolean type.
 
-
+```
 def findFirst[A](as: Array[A], p: A => Boolean): Int = {
 	@annotation.tailrec
 	def loop(n: Int): Int =
@@ -174,7 +177,7 @@ def findFirst[A](as: Array[A], p: A => Boolean): Int = {
 		else loop(n + 1)
 	loop(0)
 }
-
+```
 
 
 Anonymous functions as an alternative to named functions
@@ -182,32 +185,35 @@ Anonymous functions as an alternative to named functions
 When calling a higher-order function, it's often easier to pass anonymous functions (rather than named ones) as its argument.
 
 Invoking `findFirst` with a named function:
-
+```
 	def equals9(x: Int) = x == 9
 	findFirst(Array(7, 9, 13), equals9)
-
+```
 Invoking `findFirst` with an anonymous function:
-
+```
 	findFirst(Array(7, 9, 13), (x: Int) => x == 9)
-
+```
 
 Syntax for anonymous functions:
 left-hand-side: comma-delimited list of parameter names and types
 right-hand-side: body of function
 i.e.
+```
 (x: Int) => x == 9
+```
 or
+```
 (x: Double, b: Double) => 5 * x + b
-
+```
 
 
 Partial application
 --------------------
 `partial1` is a higher-order function for performing partial application. The name comes from the fact that its input function is being applied to some but not all of the arguments it requires. It takes a parameter `f` (a function that needs both `A` and `B` to produce `C`) and partially applies it to a value `a` of type `A`. As a result, it returns another higher-order function that only needs `B` to produce `C`.
-
+```
 def partial1[A,B,C](a: A, f: (A,B) => C): B => C =
 	(b: B) => f(a, b)
-
+```
 
 Currying
 ---------
@@ -216,27 +222,35 @@ Currying is the process of decomposing a function of multiple arguments into a c
 Let's walk through the process of currying a function `f(x1, x2, ...., xn)` that requires n arguments.
 
 The result of partial application of `f` to `x1` is `g` (a function that requires params x2, ...., xn):
+```
 f(x1) = g
+```
 
 The result of partial application of `g` to `x2` is `h` (a function that requires params x3, ...., xn):
+```
 g(x2) = h
-
 f(x1)(x2) = h
+```
 
 We can partially apply `h` to `x3`, then partially apply the resulting function to `x4`, and so on until we have a function that only requires param `xn`:
+```
 f(x1)(x2)(x3)(x4)....(xn) = f(x1, x2, ...., xn)
+```
 
 Currying `f` allows us to compose its components to form the following functions:
+```
 f(x1),
 f(x1)(x2),
 f(x1)(x2)(x3),
 ....
 f(x1)(x2)(x3)(x4)....(xn)
-
+```
 This results in more flexibility in how we can reuse different components of curried `f`.
 
 
 Example:
+```
 def line(m: Double, y_intercept: Double, x: Double): Double = m * x + y_intercept
 def curriedLine(m: Double)(y_intercept: Double)(x: Double) = line(m, y_intercept, x)
 def horizontalLine(y_intercept)(x: Double) = curriedLine(0)(y_intercept)(x)
+```
