@@ -11,7 +11,7 @@ The following example of how to write loops functionally (without mutating a loo
 	```
 
 1
---
+==
 Write a recursive function to get the nth Fibonacci number (http://mng.bz/C29s). The first two Fibonacci numbers are 0 and 1. The nth number is always the sum of the previous two—the sequence begins 0, 1, 1, 2, 3, 5. Your definition should use a local tail-recursive function.
 ```
 def fib(n: Int): Int
@@ -19,7 +19,7 @@ def fib(n: Int): Int
 
 
 2
---
+==
 Implement isSorted, which checks whether an Array[A] is sorted according to a given comparison function:
 ```
 def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean
@@ -27,20 +27,16 @@ def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean
 
 
 3
---
+==
 Currying converts a function f of two arguments into a function of one argument that partially applies f. There’s only one implementation of currying that compiles. Write this implementation.
 ```
 def curry[A,B,C](f: (A, B) => C): A => (B => C)
 ```
 
-Clarification of the method signature of `curry`:
-	param: a function `f` that takes 2 params (`a, `b`) and has a return value of type `C`
-	returns: the curried version of the input function;
-						a function `g` that takes 1 param `a` and returns the 
-						function `h` that takes 1 param `b` and has retval of type `C`
-						such that `g` has the signature:
-						g(a: A): (b: B) => C
-						and g(a)(b) = f(a,b)
+Clarification of the method signature of `curry`
+------------------------------------------------
+- param: a function `f` that takes 2 params (`a, `b`) and has a return value of type `C`
+- returns: the curried version of the input function; a function `g` that takes 1 param `a` and returns the function `h` that takes 1 param `b` and has retval of type `C` such that `g` has the signature: `g(a: A): (b: B) => C` and `g(a)(b) = f(a,b)`
 
 An annotated console session that demonstrates `curry`:
 
