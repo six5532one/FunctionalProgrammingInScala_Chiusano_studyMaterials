@@ -1,8 +1,8 @@
 Why Functional Programming?
 ===========================
 
-Problem: Mutable state is bad
------------------------------
+Problem: Mutable state makes code harder to maintain
+-----------------------------------------------------
 Stateful systems are:
 * harder to reason about because you have to keep track of changes to state
 Example: Your program is in the middle of modifying a data structure in place when it throws an exception. It's hard to write code to catch the exception, undo the partial changes already made to the data structure, and rethrow the exception. If the exception handler doesn't revert the changes to the partially-modified data structure, the program will continue executing with corrupt data.
